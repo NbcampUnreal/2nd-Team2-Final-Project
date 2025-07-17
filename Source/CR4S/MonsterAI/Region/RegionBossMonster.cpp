@@ -6,6 +6,7 @@
 #include "MonsterAI/Components/MonsterStateComponent.h"
 #include "MonsterAI/Components/MonsterAttributeComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Components/CapsuleComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -17,12 +18,13 @@ ARegionBossMonster::ARegionBossMonster()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
-	USkeletalMeshComponent* SkeletalMesh = GetMesh();
-	SkeletalMesh->SetCollisionObjectType(ECC_Pawn);
-	SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	SkeletalMesh->SetCollisionResponseToAllChannels(ECR_Block);
-	SkeletalMesh->SetGenerateOverlapEvents(false);
-
+	if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+	{
+		MoveComp->bEnablePhysicsInteraction = false;
+		MoveComp->bPushForceScaledToMass = false;
+		MoveComp->PushForceFactor = 0.0f;
+	}
+	
 	NavInvoker = CreateDefaultSubobject<UNavigationInvokerComponent>(TEXT("NavInvoker"));
 	NavInvoker->SetGenerationRadii(NavGenerationRadius, NavRemovalRadius);
 	NavInvoker->SetCanEverAffectNavigation(true);
@@ -32,6 +34,26 @@ void ARegionBossMonster::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (USkeletalMeshComponent* SkeletalMesh = GetMesh())
+	{
+		SkeletalMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		SkeletalMesh->SetCollisionObjectType(ECC_Pawn);
+		SkeletalMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
+	
+		SkeletalMesh->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+		SkeletalMesh->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+		SkeletalMesh->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Overlap);
+		SkeletalMesh->SetGenerateOverlapEvents(false);
+	}
+	
+	if (UCapsuleComponent* CapsuleComp = GetCapsuleComponent())
+	{
+		CapsuleComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
+		CapsuleComp->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
+		CapsuleComp->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Overlap);
+		CapsuleComp->SetGenerateOverlapEvents(false);
+	}
+	
 	if (UMonsterStateComponent* StateComp = FindComponentByClass<UMonsterStateComponent>())
 	{
 		StateComp->SetState(EMonsterState::Patrol);
@@ -165,9 +187,12 @@ void ARegionBossMonster::OnMonsterStateChanged(EMonsterState Previous, EMonsterS
 		DesiredSpeed *= 0.4f;  
 		break;
 	case EMonsterState::Combat:
-		SetCombatStartLocation();
-		ShowCombatRange();
-		AttributeComponent->InitializeMonsterAttribute(MonsterID);
+		if (Previous != EMonsterState::Stunned)
+		{
+			SetCombatStartLocation();
+			ShowCombatRange();
+			AttributeComponent->InitializeMonsterAttribute(MonsterID);
+		}
 		break;
 	case EMonsterState::Return:
 		if (Previous == EMonsterState::Combat)

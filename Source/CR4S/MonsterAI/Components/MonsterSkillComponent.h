@@ -92,6 +92,7 @@ protected:
 public:
 	UFUNCTION(BlueprintCallable, Category = "Monster|Skill")
 	void SetAttackCollisionEnabled(bool bEnable);
+	static void RestoreOriginalCollisionProfile(UPrimitiveComponent* Collider);
 
 	UFUNCTION()
 	void OnAttackHit(

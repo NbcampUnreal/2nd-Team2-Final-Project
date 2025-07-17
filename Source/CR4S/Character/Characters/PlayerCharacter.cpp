@@ -23,6 +23,7 @@
 #include "Game/SaveGame/SaveGameManager.h"
 #include "Inventory/Components/PlayerInventoryComponent.h"
 #include "Game/C4WidgetInteractionComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 
 APlayerCharacter::APlayerCharacter()
@@ -52,6 +53,14 @@ APlayerCharacter::APlayerCharacter()
 
 	PlayerInventory = CreateDefaultSubobject<UPlayerInventoryComponent>(TEXT("PlayerInventory"));
 	WidgetInteraction = CreateDefaultSubobject<UC4WidgetInteractionComponent>(TEXT("WidgetInteraction"));
+
+	// Disable physics interaction
+	if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+	{
+		MoveComp->bEnablePhysicsInteraction = false;
+		MoveComp->bPushForceScaledToMass = false;
+		MoveComp->PushForceFactor = 0.0f;
+	}
 }
 
 FName APlayerCharacter::GetUniqueSaveID()
