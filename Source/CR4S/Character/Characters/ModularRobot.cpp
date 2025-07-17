@@ -77,6 +77,11 @@ AModularRobot::AModularRobot()
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.0f;
 	GetCharacterMovement()->bOrientRotationToMovement = false;
 
+	// Disable physics interaction
+	GetCharacterMovement()->bEnablePhysicsInteraction = false;
+	GetCharacterMovement()->bPushForceScaledToMass = false;
+	GetCharacterMovement()->PushForceFactor = 0.f;
+
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
