@@ -280,11 +280,12 @@ void ABaseMonster::OnTakeDamageEvent(AActor* DamagedActor, float Damage, const U
 	AController* InstigatedBy, AActor* DamageCauser)
 {
 	FlashRed();
+	PlayHitSound();
 }
 
 void ABaseMonster::FlashRed()
 {
-	for (auto* Mat : DynamicMaterials)
+	for (UMaterialInstanceDynamic* Mat : DynamicMaterials)
 	{
 		if (Mat)
 		{
@@ -305,11 +306,26 @@ void ABaseMonster::FlashRed()
 
 void ABaseMonster::ResetFlash()
 {
-	for (auto* Mat : DynamicMaterials)
+	for (UMaterialInstanceDynamic* Mat : DynamicMaterials)
 	{
 		if (Mat)
 		{
 			Mat->SetScalarParameterValue(FName("DamageFlash"), 0.0f);
+		}
+	}
+}
+
+void ABaseMonster::PlayHitSound()
+{
+	if (HitSound)
+	{
+		if (UAudioManager* AudioMgr = GetWorld()->GetGameInstance()->GetSubsystem<UAudioManager>())
+		{
+			AudioMgr->PlaySFX(HitSound, GetActorLocation(), EConcurrencyType::Impact);
+		}
+		else
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
 		}
 	}
 }
