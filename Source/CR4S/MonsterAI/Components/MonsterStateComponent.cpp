@@ -77,6 +77,14 @@ void UMonsterStateComponent::SetState(EMonsterState NewState)
 	CurrentState = NewState;
 	StateElapsedTime = 0.f;
 
+	// Notice :: Test Log
+	if (const UEnum* EnumPtr = StaticEnum<EMonsterState>())
+	{
+		const FString PrevName = EnumPtr->GetNameStringByValue(static_cast<int64>(PreviousState));
+		const FString CurrName = EnumPtr->GetNameStringByValue(static_cast<int64>(CurrentState));
+		CR4S_Log(LogMonster, Warning, TEXT("[%s] State changed: %s → %s"), *GetClass()->GetName(), *PrevName, *CurrName);
+	}
+	
 	// Broadcast delegate when state changes
 	OnStateChanged.Broadcast(PreviousState, CurrentState);
 }
@@ -145,7 +153,7 @@ void UMonsterStateComponent::AddStun(float StunAmount)
 	{
 		bIsStunned = true;
 		CurrentStun = MaxStun;
-            	
+		
 		SetState(EMonsterState::Stunned);
 		OnStunStarted.Broadcast();
 		
@@ -181,8 +189,9 @@ void UMonsterStateComponent::RemoveStunDebuff()
 	bIsStunned = false;
 	CurrentStun = 0.f;
 	RecoveryElapsedTime = 0.f;
-
-	SetState(EMonsterState::Idle);
+	
+	SetState(PreviousState);
+	
 	OnStunEnded.Broadcast();
 	
 	GetWorld()->GetTimerManager().ClearTimer(StunRecoveryTimerHandle);
