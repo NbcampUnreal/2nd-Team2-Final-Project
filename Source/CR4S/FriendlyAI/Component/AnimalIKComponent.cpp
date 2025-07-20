@@ -105,23 +105,20 @@ void UAnimalIKComponent::UpdateIK()
                    0.1f,
                    IKSettings->IKInterpSpeed
                );
-               
+    
                FVector FootWorldLocation = SkeletalMeshComponent->GetBoneLocation(FootBoneName);
                FVector SurfaceNormal = FVector::UpVector;
-               
+    
                FootData.EffectorRotation = FMath::RInterpTo(
                    FootData.EffectorRotation,
                    UKismetMathLibrary::MakeRotFromZX(SurfaceNormal, OwnerCharacter->GetActorForwardVector()),
                    0.1f,
                    IKSettings->IKInterpSpeed
                );
-               
-               FootData.Alpha = FMath::FInterpTo(FootData.Alpha, IKSettings->IKAlpha, 0.1f, IKSettings->IKInterpSpeed);
            }
            else
            {
                FootData.bIsValidHit = false;
-               FootData.Alpha = FMath::FInterpTo(FootData.Alpha, 0.0f, 0.1f, IKSettings->IKInterpSpeed);
            }
        }
    }
@@ -129,6 +126,15 @@ void UAnimalIKComponent::UpdateIK()
    CalculateRootRotation();
    CalculateJointRotations();
    CalculateJointPositions();
+
+    if (FootIKData.Contains(IKSettings->FootBoneNames[0]))
+        FootIKData[IKSettings->FootBoneNames[0]].Alpha = FL_Alpha;
+    if (FootIKData.Contains(IKSettings->FootBoneNames[1]))
+        FootIKData[IKSettings->FootBoneNames[1]].Alpha = FR_Alpha;
+    if (FootIKData.Contains(IKSettings->FootBoneNames[2]))
+        FootIKData[IKSettings->FootBoneNames[2]].Alpha = BL_Alpha;
+    if (FootIKData.Contains(IKSettings->FootBoneNames[3]))
+        FootIKData[IKSettings->FootBoneNames[3]].Alpha = BR_Alpha;
 }
 
 FVector UAnimalIKComponent::PerformFootTrace(const FName& BoneName)

@@ -207,40 +207,64 @@ void UAnimalAnimInstance::UpdateIKData()
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_FL_Begin()
 {
-	FL_Alpha = 1.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->FL_Alpha = 1.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_FL_End()
 {
-	FL_Alpha = 0.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->FL_Alpha = 0.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_FR_Begin()
 {
-	FR_Alpha = 1.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->FR_Alpha = 1.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_FR_End()
 {
-	FR_Alpha = 0.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->FR_Alpha = 0.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_BL_Begin()
 {
-	BL_Alpha = 1.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->BL_Alpha = 1.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_BL_End()
 {
-	BL_Alpha = 0.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->BL_Alpha = 0.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_BR_Begin()
 {
-	BR_Alpha = 1.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->BR_Alpha = 1.0f;
+	}
 }
 
 void UAnimalAnimInstance::AnimNotify_FootPlant_BR_End()
 {
-	BR_Alpha = 0.0f;
+	if (AnimalIKComponent)
+	{
+		AnimalIKComponent->BR_Alpha = 0.0f;
+	}
 }
