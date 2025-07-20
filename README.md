@@ -23,7 +23,7 @@
 
 | 분류       | 내용                        |
 |------------|-----------------------------|
-| 게임 엔진   | Unreal Engine 5.3           |
+| 게임 엔진   | Unreal Engine 5.5           |
 | 언어       | C++, Blueprints             |
 | 협업 툴    | GitHub, Notion, Discord     |
 | 디자인     | Figma, Photoshop            |
