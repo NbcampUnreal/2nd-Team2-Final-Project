@@ -35,7 +35,7 @@ EBTNodeResult::Type UBTTask_AnimalIdle::ExecuteTask(UBehaviorTreeComponent& Owne
     if (AnimalAnimInst->PlayRandomIdleMontage())
     {
         CurrentMontage = AnimalAnimInst->GetCurrentActiveMontage();
-        AnimalAnimInst->OnIdleMontageEnded.AddDynamic(this, &UBTTask_AnimalIdle::OnIdleMontageFinished);
+        //AnimalAnimInst->OnIdleMontageEnded.AddDynamic(this, &UBTTask_AnimalIdle::OnIdleMontageFinished);
         return EBTNodeResult::InProgress;
     }
 

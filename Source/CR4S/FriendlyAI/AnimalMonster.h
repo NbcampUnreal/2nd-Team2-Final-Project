@@ -6,6 +6,7 @@
 
 class AAnimalMonsterAIController;
 class UAIJumpComponent;
+class UAnimalIKComponent;
 
 UCLASS()
 class CR4S_API AAnimalMonster : public ABaseAnimal
@@ -136,4 +137,8 @@ private:
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI Jump")
 	UAIJumpComponent* AIJumpComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"))
+	class UAnimalIKComponent* AnimalIKComponent;
+
 };
