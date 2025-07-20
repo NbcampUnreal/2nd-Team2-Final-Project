@@ -43,8 +43,8 @@
 
 | 이름     | 역할                   | GitHub |
 |----------|------------------------|--------|
-| 이수빈   | 레벨 디자인 / 아트      | [@leesubindlqslek](https://github.com/leesubindlqslek) |
-| 이순신   | 머티리얼 / 시네마틱 / 아트 | [@yujin](https://github.com/yujin) |
+| 이수빈   | 레벨 디자인 | [@leesubindlqslek](https://github.com/leesubindlqslek) |
+| 이순신   | 머티리얼 / 시네마틱 | [@yujin](https://github.com/yujin) |
 
 ### 프로그래밍
 
