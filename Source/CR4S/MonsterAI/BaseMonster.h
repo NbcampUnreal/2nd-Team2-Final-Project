@@ -175,11 +175,15 @@ protected:
 
 	void FlashRed();
 	void ResetFlash();
+	void PlayHitSound();
 	
-	UPROPERTY()
-	TArray<UMaterialInstanceDynamic*> DynamicMaterials;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster|Hit")
+	TObjectPtr<USoundBase> HitSound = nullptr;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster|Hit")
+	TArray<TObjectPtr<UMaterialInstanceDynamic>> DynamicMaterials;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster|Effect")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster|Hit")
 	float FlashDuration = 0.2f;
 
 	FTimerHandle FlashTimerHandle;

@@ -199,8 +199,7 @@ void UMonsterSkillComponent::SetAttackCollisionEnabled(bool bEnable)
 				}
 				else
 				{
-					Collider->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-					Collider->SetGenerateOverlapEvents(false);
+					RestoreOriginalCollisionProfile(Collider);
 				}
 			}
 		};
@@ -213,6 +212,19 @@ void UMonsterSkillComponent::SetAttackCollisionEnabled(bool bEnable)
 	if (bEnable)
 	{
 		AlreadyHitActors.Empty();
+	}
+}
+
+void UMonsterSkillComponent::RestoreOriginalCollisionProfile(UPrimitiveComponent* Collider)
+{
+	if (Collider)
+	{
+		Collider->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		Collider->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+		Collider->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
+		Collider->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+		Collider->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Overlap);
+		Collider->SetGenerateOverlapEvents(false);
 	}
 }
 

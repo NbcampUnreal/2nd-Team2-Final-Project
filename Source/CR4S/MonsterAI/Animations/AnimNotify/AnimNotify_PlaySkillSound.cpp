@@ -1,7 +1,6 @@
 #include "MonsterAI/Animations/AnimNotify/AnimNotify_PlaySkillSound.h"
 #include "CR4S.h"
 
-
 void UAnimNotify_PlaySkillSound::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
 	if (!IsValid(MeshComp))

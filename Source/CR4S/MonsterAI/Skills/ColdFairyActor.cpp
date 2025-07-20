@@ -50,6 +50,11 @@ void AColdFairyActor::BeginPlay()
 		auto& ArrayRef = ActiveFairiesMap.FindOrAdd(OwnerActor);
 		ArrayRef.Add(this);
 	}
+
+	if (IsValid(LaunchSkillSound))
+	{
+		PlaySkillSound(LaunchSkillSound);
+	}
 }
 
 void AColdFairyActor::Tick(float DeltaTime)
