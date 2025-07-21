@@ -41,5 +41,5 @@ void AC4CineGameMode::NotifyCinematicFinished()
 
 void AC4CineGameMode::GoToMainMap()
 {
-    UGameplayStatics::OpenLevel(this, FName("MainMap"));
+    UGameplayStatics::OpenLevel(this, FName("MainWorldMap"));
 }
