@@ -36,15 +36,15 @@
 
 | 이름     | 역할                              | GitHub |
 |----------|-----------------------------------|--------|
-| 조시연   | 애니메이션 / 기획(정)             | - |
-| 전성은   | QA / 기획(부) / 리더(현)  | [@mandugorani](https://github.com/mandugorani) |
+| 조시연   | 애니메이션 / 기획(정)             | [@josh21351345](https://github.com/josh21351345) |
+| 전성은   | QA / 기획(부) / 리더(현)  | [@yeouDend](https://github.com/yeouDend) |
 
 ### 아트
 
 | 이름     | 역할                   | GitHub |
 |----------|------------------------|--------|
 | 이수빈   | 레벨 디자인 | [@leesubindlqslek](https://github.com/leesubindlqslek) |
-| 이순신   | 머티리얼 / 시네마틱 | [@yujin](https://github.com/yujin) |
+| 이순신   | 머티리얼 / 시네마틱 | [@andugorani](https://github.com/mandugorani) |
 
 ### 프로그래밍
 
