@@ -4,6 +4,7 @@
 #include "AnimalGround.generated.h"
 
 class UAIJumpComponent;
+class UAnimalIKComponent;
 
 UCLASS()
 class CR4S_API AAnimalGround : public ABaseAnimal
@@ -17,6 +18,9 @@ public:
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"))
 	UAIJumpComponent* AIJumpComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component", meta = (AllowPrivateAccess = "true"))
+	class UAnimalIKComponent* AnimalIKComponent;
 
 #pragma region Attack
 	virtual float PlayAttackMontage() override;

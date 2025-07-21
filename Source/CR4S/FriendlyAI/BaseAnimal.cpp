@@ -472,6 +472,11 @@ void ABaseAnimal::ClearTarget()
 
 float ABaseAnimal::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
+    if (CurrentState == EAnimalState::Dead)
+    {
+        return 0.f;
+    }
+    
     if (ABaseAnimal* Damager = Cast<ABaseAnimal>(DamageCauser))
     {
         if (Damager->RowName == this->RowName)
@@ -486,8 +491,6 @@ float ABaseAnimal::TakeDamage(float DamageAmount, FDamageEvent const& DamageEven
         return 0.f;
     }
     
-    ShowHitEffect(DamageCauser);
-
     CurrentHealth -= ActualDamage;
     if (CurrentHealth <= 0.f)
     {
@@ -495,6 +498,8 @@ float ABaseAnimal::TakeDamage(float DamageAmount, FDamageEvent const& DamageEven
         SetAnimalState(EAnimalState::Dead);
         Die();
     }
+
+    ShowHitEffect(DamageCauser);
 
     if (AAnimalAIController* C = Cast<AAnimalAIController>(GetController()))
     {
@@ -527,10 +532,18 @@ void ABaseAnimal::ShowHitEffect(AActor* DamageCauser)
         HitEffectComponent->SetWorldLocation(HitResult.Location);
         HitEffectComponent->SetAsset(SelectedEffect);
         HitEffectComponent->ActivateSystem(true);
+    }
     
-        if (SoundData && CurrentState != EAnimalState::Dead)
+    if (SoundData)
+    {
+        FVector SoundLocation = GetActorLocation();
+        if (CurrentState == EAnimalState::Dead)
         {
-            PlayAnimalSound(SoundData->HitSounds, HitResult.Location, EConcurrencyType::Impact);
+            PlayAnimalSound(SoundData->DeathSounds, SoundLocation, EConcurrencyType::AI);
+        }
+        else
+        {
+            PlayAnimalSound(SoundData->HitSounds, SoundLocation, EConcurrencyType::AI);
         }
     }
 }

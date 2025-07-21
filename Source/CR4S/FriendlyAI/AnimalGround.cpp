@@ -1,6 +1,7 @@
 #include "AnimalGround.h"
 #include "Component/AIJumpComponent.h"
 #include "../Gimmick/Components/InteractableComponent.h"
+#include "Component/AnimalIKComponent.h"
 #include "Components/SphereComponent.h"
 #include "Controller/AnimalAIController.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -10,6 +11,7 @@
 AAnimalGround::AAnimalGround()
 {
 	AIJumpComponent = CreateDefaultSubobject<UAIJumpComponent>(TEXT("AIJumpComponent"));
+	AnimalIKComponent = CreateDefaultSubobject<UAnimalIKComponent>(TEXT("AnimalIKComponent"));
 }
 
 void AAnimalGround::BeginPlay()
