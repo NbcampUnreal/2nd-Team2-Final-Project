@@ -11,6 +11,7 @@
 #include "FriendlyAI/BaseHelperBot.h"
 #include "FriendlyAI/Component/AIJumpComponent.h"
 #include "DrawDebugHelpers.h"
+#include "Component/AnimalIKComponent.h"
 #include "Utility/CombatStatics.h"
 
 #pragma region AActor Override
@@ -22,6 +23,7 @@ AAnimalMonster::AAnimalMonster()
     AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 
     AIJumpComponent = CreateDefaultSubobject<UAIJumpComponent>(TEXT("AIJumpComponent"));
+    AnimalIKComponent = CreateDefaultSubobject<UAnimalIKComponent>(TEXT("AnimalIKComponent"));
 }
 
 void AAnimalMonster::BeginPlay()

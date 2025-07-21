@@ -130,7 +130,7 @@ void UAIJumpComponent::ExecuteMovement()
     }
     else
     {
-        CheckDistance = 10.0f;
+        CheckDistance = 450.0f;
     }
 
     if (FVector::Dist(CharacterLocation, CurrentTarget.Location) <= CheckDistance)

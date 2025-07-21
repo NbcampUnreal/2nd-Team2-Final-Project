@@ -44,13 +44,13 @@ void UWorldTimeManager::OnPostWorldInit(UWorld* World, const UWorld::Initializat
 	SeasonManager = GetWorld()->GetSubsystem<USeasonManager>();
 	if (!SeasonManager)
 	{
-		UE_LOG(LogTemp, Error, TEXT("SeasonManager is null"));
+		UE_LOG(LogTemp, Warning, TEXT("SeasonManager is null"));
 	}
 
 	EnvironmentManager = Cast<AEnvironmentManager>(UGameplayStatics::GetActorOfClass(World, AEnvironmentManager::StaticClass()));
 	if (!EnvironmentManager)
 	{
-		UE_LOG(LogTemp, Error, TEXT("WorldTimeManager: EnvironmentManager not found"));
+		UE_LOG(LogTemp, Warning, TEXT("WorldTimeManager: EnvironmentManager not found"));
 	}
 }
 
