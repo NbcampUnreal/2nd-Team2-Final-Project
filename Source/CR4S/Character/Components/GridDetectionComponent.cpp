@@ -5,6 +5,7 @@
 UGridDetectionComponent::UGridDetectionComponent()
 {
     PrimaryComponentTick.bCanEverTick = true;
+    PrimaryComponentTick.TickInterval = 0.2f;
 }
 
 void UGridDetectionComponent::BeginPlay()
@@ -12,13 +13,28 @@ void UGridDetectionComponent::BeginPlay()
     Super::BeginPlay();
 
     SpawnZoneManager = GetWorld()->GetSubsystem<USpawnZoneManager>();
+
+    if (!SpawnZoneManager)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SpawnZoneManager is nullptr in GridDetectionComponent"));
+    }
 }
 
 void UGridDetectionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-    DetectNearbyGrids();
+    if (!SpawnZoneManager) return;
+
+    FVector ActorLocation = GetOwner()->GetActorLocation();
+    FVector2D ActorLocation2D(ActorLocation.X, ActorLocation.Y);
+    FIntPoint CenterCoord = SpawnZoneManager->GetGridCoord(ActorLocation2D);
+
+    if (CenterCoord != PreviousCenterCoord)
+    {
+        DetectNearbyGrids();
+        PreviousCenterCoord = CenterCoord;
+    }
 }
 
 void UGridDetectionComponent::DetectNearbyGrids()

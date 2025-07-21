@@ -34,7 +34,7 @@ protected:
     TObjectPtr<USpawnZoneManager> SpawnZoneManager;
 
 private:
-
+    FIntPoint PreviousCenterCoord = FIntPoint(ForceInit);
     TSet<FIntPoint> PreviousDetectedCoords;
 
 #pragma endregion

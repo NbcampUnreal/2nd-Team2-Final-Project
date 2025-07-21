@@ -91,5 +91,5 @@ void AC4MenuGameMode::LoadCinematicMap()
 
 void AC4MenuGameMode::LoadMainMap()
 {
-    UGameplayStatics::OpenLevel(this, FName("MainMap"));
+    UGameplayStatics::OpenLevel(this, FName("MainWorldMap"));
 }
