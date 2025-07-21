@@ -43,7 +43,7 @@ void ARegionBossMonster::BeginPlay()
 		SkeletalMesh->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
 		SkeletalMesh->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
 		SkeletalMesh->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Overlap);
-		SkeletalMesh->SetGenerateOverlapEvents(false);
+		SkeletalMesh->SetGenerateOverlapEvents(true);
 	}
 	
 	if (UCapsuleComponent* CapsuleComp = GetCapsuleComponent())
@@ -51,7 +51,7 @@ void ARegionBossMonster::BeginPlay()
 		CapsuleComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
 		CapsuleComp->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Overlap);
 		CapsuleComp->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Overlap);
-		CapsuleComp->SetGenerateOverlapEvents(false);
+		CapsuleComp->SetGenerateOverlapEvents(true);
 	}
 	
 	if (UMonsterStateComponent* StateComp = FindComponentByClass<UMonsterStateComponent>())
