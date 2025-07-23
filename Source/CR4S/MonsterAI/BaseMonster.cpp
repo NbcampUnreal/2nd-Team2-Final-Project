@@ -4,6 +4,7 @@
 #include "Controller/BaseMonsterAIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
+#include "Character/Characters/ModularRobot.h"
 #include "Components/MonsterAttributeComponent.h"
 #include "Components/MonsterSkillComponent.h"
 #include "Components/MonsterStateComponent.h"
@@ -102,6 +103,10 @@ float ABaseMonster::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 	AttributeComponent->ApplyDamage(ActualDamage);
 	AddAccumulatedDamage(ActualDamage);
 
+	if (AModularRobot* Robot= Cast<AModularRobot>(DamageCauser))
+	{
+		Robot->BindWidgetToComponent(StateComponent);
+	}
 	return ActualDamage;
 }
 

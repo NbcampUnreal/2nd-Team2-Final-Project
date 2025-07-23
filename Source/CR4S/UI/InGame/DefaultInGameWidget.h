@@ -4,6 +4,8 @@
 #include "Game/System/WorldTimeManager.h"
 #include "DefaultInGameWidget.generated.h"
 
+class UMonsterStateComponent;
+class UMonsterStunWidget;
 class UWeaponInfoBlockWidget;
 class UAdditiveRobotStatusWidget;
 class UEnvironmentalStatusComponent;
@@ -51,6 +53,8 @@ public:
 	void BindEnvStatusWidgetToEnvStatus(UEnvironmentalStatusComponent* InStatus);
 	void UnbindEnvStatusFromUI();
 
+	void BindMonsterStunWidgetToMonster(UMonsterStateComponent* InMonsterComp);
+
 #pragma endregion
 	
 #pragma region UpdateWidget
@@ -92,6 +96,8 @@ protected:
 	TObjectPtr<UWeaponInfoBlockWidget> WeaponInfoBlockWidget;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidgetOptional))
 	TObjectPtr<UGuideWidget> GuideWidget;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (BindWidgetOptional))
+	TObjectPtr<UMonsterStunWidget> MonsterStunWidget;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<ULockOnWidget>> LockOnWidgets;

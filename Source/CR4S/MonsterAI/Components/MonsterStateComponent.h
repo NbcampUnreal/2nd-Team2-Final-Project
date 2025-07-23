@@ -11,6 +11,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMonsterStateChanged, EMonsterSta
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPhaseChanged, EBossPhase, NewPhase);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStunStarted);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStunEnded);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStunChanged);
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -118,6 +119,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnStunEnded   OnStunEnded;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnStunChanged OnStunChangedDelegate;
 	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Monster|State")

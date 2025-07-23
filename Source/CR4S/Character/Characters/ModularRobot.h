@@ -11,6 +11,7 @@
 #include "Utility/StunnableInterface.h"
 #include "ModularRobot.generated.h"
 
+class UMonsterStateComponent;
 class UDLWEInteractionHelperComponent;
 class UWeaponTraceComponent;
 class USaveGame;
@@ -176,6 +177,8 @@ public:
 #pragma region Widgets
 	void InitializeWidgets() const;
 	void DisconnectWidgets() const;
+
+	void BindWidgetToComponent(UMonsterStateComponent* InComponent);
 #pragma endregion
 
 #pragma region OverrideFunctions
