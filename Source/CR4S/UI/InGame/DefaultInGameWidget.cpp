@@ -9,6 +9,7 @@
 #include "Character/UI/AmmoWidget.h"
 #include "Character/UI/CharacterStatusWidget.h"
 #include "Character/UI/LockOnWidget.h"
+#include "Character/UI/MonsterStunWidget.h"
 #include "Character/UI/WeaponInfoBlockWidget.h"
 #include "Character/Weapon/RobotWeapon/HomingWeapon.h"
 #include "Components/Image.h"
@@ -131,6 +132,13 @@ void UDefaultInGameWidget::UnbindEnvStatusFromUI()
 {
 	if (!CR4S_ENSURE(LogHong1,EnvironmentStatusWidget)) return;
 	EnvironmentStatusWidget->ClearBindingsToEnvStatusComp();
+}
+
+void UDefaultInGameWidget::BindMonsterStunWidgetToMonster(UMonsterStateComponent* InMonsterComp)
+{
+	if (!CR4S_ENSURE(LogHong1,InMonsterComp && MonsterStunWidget)) return;
+
+	MonsterStunWidget->InitializeWidgetForTargetComp(InMonsterComp);
 }
 
 void UDefaultInGameWidget::UnbindWeaponFromUI()
