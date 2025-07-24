@@ -8,6 +8,7 @@
 class UDataTable;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnMonsterDeath);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnMonsterHPChanged, float, CurrentHP, float, MaxHP);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class CR4S_API UMonsterAttributeComponent : public UActorComponent
@@ -34,8 +35,12 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Attributes")
 	FOnMonsterDeath OnDeath;
 
+	UPROPERTY(BlueprintAssignable, Category = "Attributes")
+	FOnMonsterHPChanged OnHPChanged;
+	
 	FORCEINLINE float GetCurrentHP() const { return CurrentHP; }
 	FORCEINLINE void SetCurrentHP(const float NewHealth);
+	FORCEINLINE float GetMaxHP() const { return CurrentAttribute.MaxHP; }
 	FORCEINLINE void RecoverToFull() { CurrentHP = CurrentAttribute.MaxHP; }
 
 	UFUNCTION(BlueprintCallable, Category = "Attributes")

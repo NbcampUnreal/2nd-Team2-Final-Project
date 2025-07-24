@@ -22,6 +22,9 @@ public:
 	UFUNCTION(Exec)
 	void SetMonstersHP(const float InHealth);
 
+	UFUNCTION(Exec)
+	void ShowMonsterHPBar(const bool bShow);
+
 #pragma endregion
 
 #pragma region Item And Gimmick
