@@ -3,7 +3,8 @@
 #include "UI/Common/ButtonWidget.h"
 #include "UI/MainMenu/SettingsWidget.h"
 #include "Components/Overlay.h"
-#include "Game/GameMode/C4SurvivalGameMode.h"
+#include "Game/GameMode/C4BaseInGameMode.h"
+#include "UI/InGame/SurvivalHUD.h"
 #include "Kismet/GameplayStatics.h"
 
 void UPauseWidget::NativeConstruct()
@@ -93,10 +94,21 @@ void UPauseWidget::ShowMenu()
 
 void UPauseWidget::OnToMenuButtonClicked()
 {
-	AC4SurvivalGameMode* GM = Cast<AC4SurvivalGameMode>(UGameplayStatics::GetGameMode(this));
+	APlayerController* PC = UGameplayStatics::GetPlayerController(this, 0);
+	if (PC)
+	{
+		ASurvivalHUD* HUD = Cast<ASurvivalHUD>(PC->GetHUD());
+		if (HUD)
+		{
+			HUD->ShowLoading();
+		}
+	}
+	AC4BaseInGameMode* GM = Cast<AC4BaseInGameMode>(UGameplayStatics::GetGameMode(this));
 	if (GM)
 	{
-		GM->ReturnToMenu();
+		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 1.0f);
+		GM->ReturnToMenuWithDelay(1.0f);
+
 	}
 }
 

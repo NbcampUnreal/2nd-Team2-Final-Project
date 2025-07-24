@@ -12,20 +12,6 @@ void AC4SurvivalGameMode::StartPlay()
     HandleStartGame();
 }
 
-void AC4SurvivalGameMode::ReturnToMenuWithDelay(float Delay)
-{
-    CR4S_Log(LogGM, Log, TEXT("ReturnToMenuWithDelay called. Returning to MenuLevel in %.2f seconds."), Delay);
-
-    FTimerHandle TimerHandle;
-    GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AC4SurvivalGameMode::ReturnToMenu, Delay, false);
-}
-
-void AC4SurvivalGameMode::ReturnToMenu()
-{
-    CR4S_Log(LogGM, Log, TEXT("Opening MenuLevel..."));
-    UGameplayStatics::OpenLevel(this, FName("MenuLevel"));
-}
-
 void AC4SurvivalGameMode::EndGameSequence()
 {
     CR4S_SIMPLE_SCOPE_LOG;
@@ -96,4 +82,11 @@ void AC4SurvivalGameMode::HandleStartGame()
             CR4S_Log(LogGM, Warning, TEXT("PlayerController not found."));
         }
     }
+}
+
+void AC4SurvivalGameMode::HandleLoadGame()
+{
+    Super::HandleLoadGame();
+
+    UGameplayStatics::OpenLevel(this, FName("MainWorldMap"));
 }
