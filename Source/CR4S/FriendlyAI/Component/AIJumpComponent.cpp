@@ -448,9 +448,9 @@ bool UAIJumpComponent::CalculateOptimalPath(const FVector& StartLocation, const 
     float WallHeight;
     bool bWallDetected = DetectNearbyWall(StartLocation, WallLocation, WallHeight);
     
-    FVector CyanWallLocation;
-    float CyanWallHeight;
-    bool bDirectPathHasObstacles = AnalyzePathObstacles(StartLocation, TargetLocation, CyanWallLocation, CyanWallHeight);
+    // FVector CyanWallLocation;
+    // float CyanWallHeight;
+    //bool bDirectPathHasObstacles = AnalyzePathObstacles(StartLocation, TargetLocation, CyanWallLocation, CyanWallHeight);
     
     if (IsDirectPathPossible(StartLocation, TargetLocation, JumpPower))
     {
@@ -460,7 +460,8 @@ bool UAIJumpComponent::CalculateOptimalPath(const FVector& StartLocation, const 
         
         FJumpPoint EndPoint;
         EndPoint.Location = TargetLocation;
-        EndPoint.bRequiresJump = bDirectPathHasObstacles || bWallDetected;
+        //EndPoint.bRequiresJump = bDirectPathHasObstacles || bWallDetected;
+        EndPoint.bRequiresJump = bWallDetected;
         
         if (EndPoint.bRequiresJump && bWallDetected)
         {
@@ -722,7 +723,15 @@ void UAIJumpComponent::ResetJumpState()
 
 bool UAIJumpComponent::DetectNearbyWall(const FVector& StartPos, FVector& OutWallLocation, float& OutWallHeight)
 {
-    FVector ForwardDirection = OwnerCharacter->GetActorForwardVector();
+    FVector ForwardDirection;
+    if (CurrentTargetActor)
+    {
+        ForwardDirection = (CurrentTargetActor->GetActorLocation() - StartPos).GetSafeNormal();
+    }
+    else
+    {
+        ForwardDirection = OwnerCharacter->GetActorForwardVector();
+    }
     ForwardDirection.Z = 0.0f;
     ForwardDirection = ForwardDirection.GetSafeNormal();
     
