@@ -24,6 +24,8 @@ void UMonsterAttributeComponent::InitializeMonsterAttribute(const FName MonsterI
 			CurrentAttribute = *Row;
 			CurrentHP = CurrentAttribute.MaxHP;
 
+			OnHPChanged.Broadcast(CurrentHP, CurrentAttribute.MaxHP);
+
 			// NOTICE :: Test Log
 			UE_LOG(LogTemp, Log, TEXT("[%s] %s Init: MaxHP=%.2f, AttackPower=%.2f, AttackRange=%.2f, AtkSpeed=%.2f, MoveSpeed=%.2f"),
 				*MyHeader,
@@ -56,6 +58,8 @@ void UMonsterAttributeComponent::ApplyHeal(float HealAmount)
 void UMonsterAttributeComponent::ChangeHP(float Delta)
 {
 	CurrentHP = FMath::Clamp(CurrentHP + Delta, 0.0f, CurrentAttribute.MaxHP);
+
+	OnHPChanged.Broadcast(CurrentHP, CurrentAttribute.MaxHP);
 	
 	if (UMonsterStateComponent* StateComp = GetOwner()->FindComponentByClass<UMonsterStateComponent>())
 	{

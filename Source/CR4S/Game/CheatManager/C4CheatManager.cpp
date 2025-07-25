@@ -96,3 +96,8 @@ void UC4CheatManager::SetMonstersHP(const float InHealth)
 {
 	MonsterAIHelper::SetMonstersHP(GetWorld(), InHealth);
 }
+
+void UC4CheatManager::ShowMonsterHPBar(const bool bShow)
+{
+	MonsterAIHelper::ShowMonsterHPBars(GetWorld(), bShow);
+}

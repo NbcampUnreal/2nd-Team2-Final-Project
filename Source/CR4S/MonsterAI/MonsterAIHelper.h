@@ -10,4 +10,5 @@ namespace MonsterAIHelper
 {
 	CR4S_API ABaseMonster* GetControlledMonster(UBehaviorTreeComponent& OwnerComp);
 	CR4S_API void SetMonstersHP(const UWorld* World, const float InHealth);
+	CR4S_API void ShowMonsterHPBars(const UWorld* World, const bool bShow);
 }

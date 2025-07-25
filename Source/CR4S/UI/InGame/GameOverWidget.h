@@ -36,4 +36,7 @@ protected:
 	void OnToMenuButtonClicked();
 	UFUNCTION()
 	void OnLoadSaveButtonClicked();
+
+private:
+	void RequestLoadWidget();
 };

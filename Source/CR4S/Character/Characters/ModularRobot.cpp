@@ -819,6 +819,20 @@ void AModularRobot::DisconnectWidgets() const
 	}
 }
 
+void AModularRobot::BindWidgetToComponent(UMonsterStateComponent* InComponent)
+{
+	if (ACharacterController* CurrentController=Cast<ACharacterController>(GetController()))
+	{
+		if (ASurvivalHUD* CurrentHUD=Cast<ASurvivalHUD>(CurrentController->GetHUD()))
+		{
+			if (UDefaultInGameWidget* InGameWidget=CurrentHUD->GetInGameWidget())
+			{
+				InGameWidget->BindMonsterStunWidgetToMonster(InComponent);
+			}
+		}
+	}
+}
+
 // Called when the game starts or when spawned
 void AModularRobot::BeginPlay()
 {
