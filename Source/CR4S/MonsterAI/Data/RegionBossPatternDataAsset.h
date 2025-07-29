@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Engine/DataAsset.h"
 #include "MonsterEnum.h"
 #include "RegionBossPatternDataAsset.generated.h"
@@ -14,6 +15,9 @@ struct FPhaseSkillSequence
 	EBossPhase Phase = EBossPhase::Normal;
 
 	UPROPERTY(EditAnywhere)
+	TArray<FGameplayTag> SkillTags;
+
+	UPROPERTY(EditAnywhere)
 	TArray<int32> SkillIndices;
 };
 
@@ -25,6 +29,9 @@ struct FRegionPatternData
 	UPROPERTY(EditAnywhere)
 	uint8 PatternID = 0;
 
+	UPROPERTY(EditAnywhere)
+	FGameplayTag BossTypeTag;
+	
 	UPROPERTY(EditAnywhere)
 	TArray<FPhaseSkillSequence> PhaseSequences;
 
@@ -44,6 +51,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FRegionPatternData> PatternList;
 
+	virtual void PostLoad() override;
 	const TArray<int32>* GetSkillSequence(uint8 PatternID, EBossPhase Phase) const;
 
+private:
+	int32 ConvertSkillTagToIndex(const FGameplayTag& SkillTag, const FGameplayTag& BossTypeTag) const;
+	
 };

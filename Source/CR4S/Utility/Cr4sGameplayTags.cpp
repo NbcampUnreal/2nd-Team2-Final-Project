@@ -103,3 +103,55 @@ namespace ItemTags
 	UE_DEFINE_GAMEPLAY_TAG(RobotParts, FName(TEXT("RobotParts")));
 	UE_DEFINE_GAMEPLAY_TAG(Weapon, FName(TEXT("Weapon")));
 }
+
+namespace RegionBossTypeTags
+{
+	UE_DEFINE_GAMEPLAY_TAG(Kamish, FName(TEXT("RegionBossType.Kamish")));
+	UE_DEFINE_GAMEPLAY_TAG(LavaBrute, FName(TEXT("RegionBossType.LavaBrute")));
+}
+
+namespace KamishSkillTags
+{
+	UE_DEFINE_GAMEPLAY_TAG(ThunderRush, FName(TEXT("Skill.Kamish.Normal.ThunderRush")));
+	UE_DEFINE_GAMEPLAY_TAG(KneelDash, FName(TEXT("Skill.Kamish.Normal.KneelDash")));
+	UE_DEFINE_GAMEPLAY_TAG(ThunderLeap, FName(TEXT("Skill.Kamish.Normal.ThunderLeap")));
+	UE_DEFINE_GAMEPLAY_TAG(DashAndLeap, FName(TEXT("Skill.Kamish.Normal.DashAndLeap")));
+	UE_DEFINE_GAMEPLAY_TAG(FlyingHammer, FName(TEXT("Skill.Kamish.Normal.FlyingHammer")));
+	UE_DEFINE_GAMEPLAY_TAG(RetrieveHammer, FName(TEXT("Skill.Kamish.Normal.RetrieveHammer")));
+	UE_DEFINE_GAMEPLAY_TAG(RhythmStrike, FName(TEXT("Skill.Kamish.Normal.RhythmStrike")));
+	UE_DEFINE_GAMEPLAY_TAG(HeavyStrike, FName(TEXT("Skill.Kamish.Normal.HeavyStrike")));
+	UE_DEFINE_GAMEPLAY_TAG(HeavyLeftSwing, FName(TEXT("Skill.Kamish.Normal.HeavyLeftSwing")));
+	UE_DEFINE_GAMEPLAY_TAG(HeavyRightSwing, FName(TEXT("Skill.Kamish.Normal.HeavyRightSwing")));
+	UE_DEFINE_GAMEPLAY_TAG(LightRightSwing, FName(TEXT("Skill.Kamish.Normal.LightRightSwing")));
+	UE_DEFINE_GAMEPLAY_TAG(LightLeftSwing, FName(TEXT("Skill.Kamish.Normal.LightLeftSwing")));
+	UE_DEFINE_GAMEPLAY_TAG(LightSlam, FName(TEXT("Skill.Kamish.Normal.LightSlam")));
+	UE_DEFINE_GAMEPLAY_TAG(LightUpper, FName(TEXT("Skill.Kamish.Normal.LightUpper")));
+
+	UE_DEFINE_GAMEPLAY_TAG(B_ThunderRush, FName(TEXT("Skill.Kamish.Berserk.ThunderRush")));
+	UE_DEFINE_GAMEPLAY_TAG(B_KneelDash, FName(TEXT("Skill.Kamish.Berserk.KneelDash")));
+	UE_DEFINE_GAMEPLAY_TAG(B_ThunderLeap, FName(TEXT("Skill.Kamish.Berserk.ThunderLeap")));
+	UE_DEFINE_GAMEPLAY_TAG(B_DashAndLeap, FName(TEXT("Skill.Kamish.Berserk.DashAndLeap")));
+	UE_DEFINE_GAMEPLAY_TAG(B_FlyingHammer, FName(TEXT("Skill.Kamish.Berserk.FlyingHammer")));
+	UE_DEFINE_GAMEPLAY_TAG(B_RetrieveHammer, FName(TEXT("Skill.Kamish.Berserk.RetrieveHammer")));
+	UE_DEFINE_GAMEPLAY_TAG(B_RhythmStrike, FName(TEXT("Skill.Kamish.Berserk.RhythmStrike")));
+	UE_DEFINE_GAMEPLAY_TAG(B_HeavyStrike, FName(TEXT("Skill.Kamish.Berserk.HeavyStrike")));
+	UE_DEFINE_GAMEPLAY_TAG(B_HeavyLeftSwing, FName(TEXT("Skill.Kamish.Berserk.HeavyLeftSwing")));
+	UE_DEFINE_GAMEPLAY_TAG(B_HeavyRightSwing, FName(TEXT("Skill.Kamish.Berserk.HeavyRightSwing")));
+}
+
+namespace LavaBruteSkillTags
+{
+	UE_DEFINE_GAMEPLAY_TAG(ThrowingStones, FName(TEXT("Skill.LavaBrute.Normal.ThrowingStones")));
+	UE_DEFINE_GAMEPLAY_TAG(EarthRumbling, FName(TEXT("Skill.LavaBrute.Normal.EarthRumbling")));
+	UE_DEFINE_GAMEPLAY_TAG(ShoulderTackle, FName(TEXT("Skill.LavaBrute.Normal.ShoulderTackle")));
+	UE_DEFINE_GAMEPLAY_TAG(LavaBreath, FName(TEXT("Skill.LavaBrute.Normal.LavaBreath")));
+	UE_DEFINE_GAMEPLAY_TAG(CreateLava, FName(TEXT("Skill.LavaBrute.Normal.CreateLava")));
+	UE_DEFINE_GAMEPLAY_TAG(GroundSmash, FName(TEXT("Skill.LavaBrute.Normal.GroundSmash")));
+	UE_DEFINE_GAMEPLAY_TAG(SmashTwice, FName(TEXT("Skill.LavaBrute.Normal.SmashTwice")));
+	UE_DEFINE_GAMEPLAY_TAG(HeavyPushLA, FName(TEXT("Skill.LavaBrute.Normal.HeavyPushLA")));
+	UE_DEFINE_GAMEPLAY_TAG(HeavySlapHand, FName(TEXT("Skill.LavaBrute.Normal.HeavySlapHand")));
+	UE_DEFINE_GAMEPLAY_TAG(HeavySmash, FName(TEXT("Skill.LavaBrute.Normal.HeavySmash")));
+	UE_DEFINE_GAMEPLAY_TAG(LightSpike, FName(TEXT("Skill.LavaBrute.Normal.LightSpike")));
+	UE_DEFINE_GAMEPLAY_TAG(LightSwingLA, FName(TEXT("Skill.LavaBrute.Normal.LightSwingLA")));
+	UE_DEFINE_GAMEPLAY_TAG(LightSwingRA, FName(TEXT("Skill.LavaBrute.Normal.LightSwingRA")));
+}
