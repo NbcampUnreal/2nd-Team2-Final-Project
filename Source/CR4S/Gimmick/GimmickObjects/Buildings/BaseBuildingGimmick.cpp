@@ -114,3 +114,19 @@ void ABaseBuildingGimmick::UpdateWorldTime(const int64 NewPlayTime)
 void ABaseBuildingGimmick::ApplyBurn_Implementation(float ActualSeconds)
 {
 }
+
+FGameplayTag ABaseBuildingGimmick::GetTutorialTagByRowName(FName RowName) const
+{
+	if (RowName.IsNone())
+	{
+		return FGameplayTag();
+	}
+
+	FString TagString = FString::Printf(TEXT("Tutorial.Building.%s"), *RowName.ToString());
+	return FGameplayTag::RequestGameplayTag(FName(*TagString), false);
+}
+
+void ABaseBuildingGimmick::NotifyTutorial(const FGameplayTag& TutorialTag)
+{
+	ITutorialNotifiable::NotifyObjective(this, TutorialTag);
+}

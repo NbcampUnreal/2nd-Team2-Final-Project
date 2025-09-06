@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "Gimmick/GimmickObjects/BaseGimmick.h"
-
+#include "Game/Interface/TutorialNotifiable.h"
 #include "DestructibleGimmick.generated.h"
 
 class UObjectShakeComponent;
@@ -11,7 +11,7 @@ class ABaseDestructObject;
 class UDestructibleComponent;
 
 UCLASS(BlueprintType)
-class CR4S_API ADestructibleGimmick : public ABaseGimmick
+class CR4S_API ADestructibleGimmick : public ABaseGimmick, public ITutorialNotifiable
 {
 	GENERATED_BODY()
 
@@ -95,4 +95,10 @@ private:
 	
 #pragma endregion
 	
+#pragma region ITutorialNotifiable
+
+public:
+	FGameplayTag GetTutorialTag() const override;
+
+#pragma endregion
 };

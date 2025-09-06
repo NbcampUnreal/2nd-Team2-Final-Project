@@ -1,9 +1,10 @@
 #include "Game/CheatManager/C4CheatManager.h"
-
 #include "CharacterCheatHelper.h"
 #include "EngineUtils.h"
 #include "Game/CheatManager/TimeCheatHelper.h"
 #include "Game/CheatManager/SaveGameHelper.h"
+#include "Game/CheatManager/TutorialHelper.h"
+#include "MonsterAI/MonsterAIHelper.h"
 #include "Game/CheatManager/AnimalCheatHelper.h"
 #include "CR4S.h"
 #include "ItemGimmickHelper.h"
@@ -21,6 +22,7 @@ void UC4CheatManager::InitCheatManager()
 	ItemGimmickHelper = NewObject<UItemGimmickHelper>(this);
 	SaveGameHelper = NewObject<USaveGameHelper>(this);
 	CharacterCheatHelper = NewObject<UCharacterCheatHelper>(this);
+	TutorialHelper = NewObject<UTutorialHelper>(this);
 	AnimalHelper = NewObject<UAnimalCheatHelper>(this);
 }
 
@@ -30,6 +32,11 @@ void UC4CheatManager::SetInvincibleMode(const bool bInvincibleMode) const
 	{
 		CharacterCheatHelper->SetInvincibleMode(bInvincibleMode);
 	}
+}
+
+void UC4CheatManager::IncrementObjective(FGameplayTag TutorialTag)
+{
+	TutorialHelper->IncrementObjective(TutorialTag);
 }
 
 void UC4CheatManager::SaveNow()

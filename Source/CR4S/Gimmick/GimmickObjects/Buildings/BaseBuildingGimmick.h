@@ -2,7 +2,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
+#include "Game/Interface/TutorialNotifiable.h"
+#include "GameplayTagContainer.h"
 #include "BaseBuildingGimmick.generated.h"
 
 class UEnvironmentalStatusComponent;
@@ -27,7 +28,7 @@ struct FBuildingEnvironmentalStatus
 };
 
 UCLASS(BlueprintType, Blueprintable)
-class CR4S_API ABaseBuildingGimmick : public AActor
+class CR4S_API ABaseBuildingGimmick : public AActor, public ITutorialNotifiable
 {
 	GENERATED_BODY()
 
@@ -111,5 +112,16 @@ private:
 	
 	int64 PrevPlayTime;
 	
+#pragma endregion 
+
+#pragma region Tutorial Notification
+public:
+	//Function that maps RowNames to GameplayTags in Editor
+	UFUNCTION(BlueprintCallable, Category = "Tutorial")
+	FGameplayTag GetTutorialTagByRowName(FName RowName) const;
+
+	UFUNCTION(BlueprintCallable, Category = "Tutorial")
+	void NotifyTutorial(const FGameplayTag& TutorialTag);
+
 #pragma endregion 
 };

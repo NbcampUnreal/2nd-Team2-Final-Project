@@ -153,6 +153,8 @@ void ADestructibleGimmick::OnGimmickDestroy(AActor* DamageCauser)
 
 	GetResources(DamageCauser);
 
+	ITutorialNotifiable::NotifyObjective(this, GetTutorialTag());
+
 	Destroy();
 
 	if (CR4S_VALIDATE(LogGimmick, DestructObjectClass))
@@ -238,4 +240,16 @@ int32 ADestructibleGimmick::CalculatedDamage(const int32 RequiredHits) const
 	}
 
 	return FMath::CeilToInt(DestructibleComponent->GetMaxHealth() / RequiredHits);
+}
+
+FGameplayTag ADestructibleGimmick::GetTutorialTag() const
+{
+	FName RowName = GetGimmickDataRowName();
+	if (RowName.IsNone() || RowName == FName("Tree"))
+	{
+		return FGameplayTag();
+	}
+	//
+	FString TagString = FString::Printf(TEXT("Tutorial.Gimmick.%s"), *RowName.ToString());
+	return FGameplayTag::RequestGameplayTag(FName(*TagString), false);
 }

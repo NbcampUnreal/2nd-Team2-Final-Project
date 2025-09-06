@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/CheatManager.h"
+#include "GameplayTagContainer.h"
 #include "C4CheatManager.generated.h"
 
 UCLASS()
@@ -69,6 +70,12 @@ public:
 	
 #pragma endregion
 	
+#pragma region Tutorial Commands
+public:
+	UFUNCTION(Exec)
+	void IncrementObjective(FGameplayTag TutorialTag);
+
+#pragma endregion
 #pragma region Helper Deceleration
 protected:
 	UPROPERTY()
@@ -79,6 +86,9 @@ protected:
 	TObjectPtr<class USaveGameHelper> SaveGameHelper;
 	UPROPERTY()
 	TObjectPtr<class UCharacterCheatHelper> CharacterCheatHelper;
+	UPROPERTY()
+	TObjectPtr<class UTutorialHelper> TutorialHelper;
+
 	UPROPERTY()
 	TObjectPtr<class UAnimalCheatHelper> AnimalHelper;
 	virtual void InitCheatManager() override;

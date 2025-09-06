@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "BaseInventoryComponent.h"
+#include "Game/Interface/TutorialNotifiable.h"
 #include "CR4S.h"
 #include "Gimmick/Components/InteractionComponent.h"
 #include "Inventory/UI/InventoryContainerWidget.h"
@@ -12,7 +13,7 @@ class UPlanterBoxInventoryWidget;
 class UInventoryContainerWidget;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class CR4S_API UPlayerInventoryComponent : public UBaseInventoryComponent
+class CR4S_API UPlayerInventoryComponent : public UBaseInventoryComponent, public ITutorialNotifiable
 {
 	GENERATED_BODY()
 
@@ -147,6 +148,10 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "InventoryComponent|Delegate")
 	FOnInventoryClose OnInventoryClose;
+
+#pragma endregion
+
+#pragma region ITutorialNotifiable
 
 #pragma endregion
 };

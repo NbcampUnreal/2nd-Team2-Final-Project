@@ -149,6 +149,10 @@ void UPlayerInventoryComponent::AddItemNotification(const bool bUseItemNotificat
 
 	if (const FItemInfoData* ItemInfoData = ItemGimmickSubsystem->FindItemInfoData(RowName))
 	{
+		// Tutorial Notification // 
+		FString TagString = FString::Printf(TEXT("Tutorial.Item.%s"), *RowName.ToString());
+		ITutorialNotifiable::NotifyObjective(GetOwner(), FGameplayTag::RequestGameplayTag(FName(*TagString), false));
+
 		InventoryContainerWidgetInstance->AddItemNotification(FAddItemData(ItemInfoData->Icon, AddedCount, ItemInfoData->Name));
 	}
 }
