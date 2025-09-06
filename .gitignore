@@ -85,3 +85,7 @@ DerivedDataCache/*
 # Prerequisites
 *.d
 Content/*
+!Content/CR4S/
+!Content/CR4S/**
+!Content/EasyBuildingSystem/
+!Content/EasyBuildingSystem/**
